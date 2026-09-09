@@ -1,0 +1,9 @@
+<!--
+  Pega esto dentro de <manifest> en android/app/src/main/AndroidManifest.xml
+  (antes de la etiqueta <application>)
+-->
+<uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+<uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+<!-- Compatibilidad con Android 12 y anteriores -->
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+    android:maxSdkVersion="32" />
