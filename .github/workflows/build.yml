@@ -15,7 +15,7 @@ jobs:
           java-version: '17'
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.24.0'
+          channel: 'stable'
       - name: Generar proyecto Android
         run: flutter create . --platforms=android --project-name app_reproductor --org com.haltonjuan
       - name: Instalar dependencias
