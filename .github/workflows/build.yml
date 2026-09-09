@@ -20,6 +20,21 @@ jobs:
         run: flutter create . --platforms=android --project-name app_reproductor --org com.haltonjuan
       - name: Instalar dependencias
         run: flutter pub get
+      - name: Parchear namespace faltante en plugins viejos
+        run: |
+          cat >> android/build.gradle << 'PATCH'
+
+          subprojects {
+              afterEvaluate { project ->
+                  if (project.plugins.hasPlugin('com.android.library')) {
+                      def android = project.extensions.findByName('android')
+                      if (android != null && android.namespace == null) {
+                          android.namespace = project.group
+                      }
+                  }
+              }
+          }
+          PATCH
       - name: Compilar APK
         run: flutter build apk --release
       - name: Subir APK como artifact
